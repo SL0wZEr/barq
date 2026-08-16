@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Barq
+GenericName=Scratch Note
+Comment=Lightning-fast floating scratch note that always saves itself
+Exec=barq
+Icon=barq
+Terminal=false
+Categories=Utility;TextEditor;
+Keywords=note;scratch;jot;quick;sticky;barq;برق;
+StartupWMClass=barq

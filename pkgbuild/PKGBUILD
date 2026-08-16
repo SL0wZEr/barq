@@ -1,0 +1,27 @@
+# Maintainer: Ahmad Aljazzar <ahmadawmh@gmail.com>
+
+pkgname=barq
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Lightning-fast floating scratch note that always saves itself'
+arch=('x86_64')
+url='https://github.com/SL0wZEr/barq'
+license=('MIT')
+install='barq.install'
+depends=('qt6-base' 'qt6-declarative' 'xdg-desktop-portal')
+makedepends=('gcc' 'make' 'qt6-base' 'qt6-declarative')
+source=()
+sha256sums=()
+
+build() {
+  cd "$startdir/.."
+  ./bin/build
+}
+
+package() {
+  cd "$startdir/.."
+  /usr/bin/install -Dm755 build/barq "$pkgdir/usr/bin/barq"
+  /usr/bin/install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  /usr/bin/install -Dm644 "$startdir/barq.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/barq.svg"
+  /usr/bin/install -Dm644 "$startdir/barq.desktop" "$pkgdir/usr/share/applications/barq.desktop"
+}
