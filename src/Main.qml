@@ -70,7 +70,10 @@ ApplicationWindow {
             selectedTextColor: win.pageColor
             font.family: fixedFontFamily
             font.pixelSize: win.scaledSize(16)
+            // The Material style binds top/bottom padding itself (for its
+            // floating placeholder), so the shorthand alone doesn't reach them.
             padding: win.scaledSize(28)
+            topPadding: win.scaledSize(28)
             bottomPadding: win.scaledSize(40)
             background: null
 
