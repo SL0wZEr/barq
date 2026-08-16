@@ -70,8 +70,8 @@ ApplicationWindow {
             selectedTextColor: win.pageColor
             font.family: fixedFontFamily
             font.pixelSize: win.scaledSize(16)
-            padding: win.scaledSize(18)
-            bottomPadding: win.scaledSize(30)
+            padding: win.scaledSize(28)
+            bottomPadding: win.scaledSize(40)
             background: null
 
             Component.onCompleted: {
