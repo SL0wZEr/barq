@@ -1,13 +1,17 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import QtQuick.Window
 
 ApplicationWindow {
     id: win
-    width: 520
-    height: 440
-    minimumWidth: 300
-    minimumHeight: 220
+    // A share of the screen rather than fixed pixels, so the note keeps its
+    // apparent size at any monitor scale; capped so it stays a sticky note
+    // on large displays. Screen dimensions are logical, matching the cap.
+    width: Math.min(640, Math.round(Screen.width * 0.36))
+    height: Math.min(520, Math.round(Screen.height * 0.45))
+    minimumWidth: 240
+    minimumHeight: 180
     visible: true
     title: "Barq"
 

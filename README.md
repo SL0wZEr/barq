@@ -57,8 +57,11 @@ o.bind("SUPER + B", "Barq note", "barq")
 And make it float in `~/.config/hypr/hyprland.lua` (below the Omarchy defaults):
 
 ```lua
-o.window("barq", { float = true, size = { 520, 440 }, center = true })
+o.window("barq", { float = true, center = true })
 ```
+
+No size rule needed: barq sizes itself to ~36% × 45% of the screen (capped at
+640 × 520), so it keeps the same apparent size at any monitor scale.
 
 Tip: add `pin = true` to the window rule and the note follows you across
 workspaces — handy mid-phone-call.
@@ -68,7 +71,6 @@ workspaces — handy mid-phone-call.
 ```conf
 bind = SUPER, B, exec, barq
 windowrulev2 = float, class:^(barq)$
-windowrulev2 = size 520 440, class:^(barq)$
 windowrulev2 = center, class:^(barq)$
 ```
 
