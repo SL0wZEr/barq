@@ -48,8 +48,11 @@ Dependencies: `qt6-base`, `qt6-declarative`, `xdg-desktop-portal`.
 Add a summon key in `~/.config/hypr/bindings.lua`:
 
 ```lua
-o.bind("SUPER + B", "Barq note", { launch = "barq" })
+o.bind("SUPER + B", "Barq note", "barq")
 ```
+
+(Bind the plain command, not `{ launch = "barq" }` — the launch wrapper adds
+~150ms of process scoping to every toggle.)
 
 And make it float in `~/.config/hypr/hyprland.lua` (below the Omarchy defaults):
 

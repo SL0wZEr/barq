@@ -13,6 +13,12 @@ class SingleInstance : public QObject {
 public:
     explicit SingleInstance(const QString &name, QObject *parent = nullptr);
 
+    // Raw-socket poke of a resident instance, safe to call before any
+    // Q*Application exists. Keeping Qt's GUI stack out of the poke path is
+    // what makes the summon keybinding fast. True if an instance answered
+    // (and this process should exit).
+    static bool pokeExisting(const QString &name);
+
     // True when this process is the resident instance; false when a running
     // instance was poked instead and this process should exit.
     bool claim();

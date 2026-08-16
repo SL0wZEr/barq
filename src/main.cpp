@@ -15,15 +15,23 @@
 #include "systemtheme.h"
 
 int main(int argc, char *argv[]) {
+    // Local sockets live in a world-shared temp dir, so scope the name per
+    // user. Poke before constructing QGuiApplication: when a resident barq
+    // exists, this process's only job is one socket write, and skipping the
+    // GUI stack keeps the summon keybinding fast.
+    const QString instanceName =
+        QStringLiteral("barq-") + QString::number(::getuid());
+    if (SingleInstance::pokeExisting(instanceName))
+        return 0;
+
     QGuiApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("barq"));
     app.setDesktopFileName(QStringLiteral("barq"));
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("barq")));
 
-    // Local sockets live in a world-shared temp dir, so scope the name per user.
-    SingleInstance instance(QStringLiteral("barq-") + QString::number(::getuid()));
+    SingleInstance instance(instanceName);
     if (!instance.claim())
-        return 0; // the resident barq was toggled instead
+        return 0; // lost a startup race; the winner was toggled instead
 
     QQuickStyle::setStyle(QStringLiteral("Material"));
 
