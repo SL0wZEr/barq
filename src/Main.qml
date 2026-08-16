@@ -94,12 +94,17 @@ ApplicationWindow {
         }
     }
 
-    Label {
+    // Save indicator: nothing when saved — a quiet page is the signal. While
+    // a save is pending, a small soft dot breathes in the corner, then fades.
+    Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: win.scaledSize(10)
-        text: backend.dirty ? "…" : "⚡"
-        color: Qt.alpha(win.inkColor, 0.4)
-        font.pixelSize: win.scaledSize(12)
+        anchors.margins: win.scaledSize(14)
+        width: 6
+        height: 6
+        radius: 3
+        color: Qt.alpha(win.inkColor, 0.35)
+        opacity: backend.dirty ? 1 : 0
+        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 }
